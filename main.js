@@ -1,39 +1,31 @@
 var rnd=Math.random,round=Math.round,floor=Math.floor;
 var sounds = [], reverb;
-var osctypes = ["sine","triangle","square","sawtooth"];
-function urandint(max){
-	return floor( rnd()*max );
-}
 function init(){
-	var a=[], synth, i, j;
+	var a=[], synth, poly, i, j;
 	var variance, freq;
 	for(i=0;i<3;i++){
-		a = [];
 		variance = rnd()*1000;
 		freq = rnd()*1000;
-		for(j=0;j<30;j++){
-			synth = new p5.Oscillator();
-			synth.setType( "sawtooth" );
-			synth.amp(0.1);
-			synth.freq( rnd()*50+50 );
+		for(j=0;j<3;j++){
+			synth = new p5.MonoSynth(null,99);
+			// synth.data = {
+			// 	note: 'A4', velocity: rnd(),
+			// 	time: 0, dur: 1
+			// }
 			a.push( synth );
 		}
-		sounds.push(a);
-	}
-}
-function playOne( sfx, dur ){
-	sfx.start(0);
-	setTimeout( ()=>{
-		sfx.stop();
-	}, dur );
-}
-function playMulti( list, dur ){
-	for(var i=0;i<list.length;i++){
-		playOne( list[i], dur );
 	}
 }
 function play( i ){
-	playMulti( sounds[i], 70 );
+	//playMulti( sounds[i], 70 );
+	var data, snd, j;
+	var snd = new p5.PolySynth();
+	snd.play( 'A5', 1, 0, .2 );
+	snd.play( 'A5b', 1, 0, .2 );
+	snd.play( 'B5', 1, 0, .2 );
+}
+function nada(){
+	null;
 }
 function main(){
 	init();

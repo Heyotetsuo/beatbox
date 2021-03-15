@@ -5,27 +5,12 @@
 	<title>Bryan Brinkman’s Beat Generator</title>
 	<link rel="stylesheet" href="main.css">
 	<link rel="shortcut icon" href="favicon.ico">
-	<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-		}
-		canvas {
-			padding: 0;
-			margin: auto;
-			display: block;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-		}
-	</style>
+	<meta name="viewport" content="width=device-width">
 </head>
 <body>
-<button onclick="play(0)">Alpha</button>
-<button onclick="play(1)">Beta</button>
-<button onclick="play(2)">Gamma</button>
+<div class="button" onclick="play(0)" ontouchend="nada()">Alpha</div>
+<div class="button" onclick="play(1)" ontouchend="nada()">Beta</div>
+<div class="button" onclick="play(2)" ontouchend="nada()">Gamma</div>
 </body>
 <script>
 var floor=Math.floor, rnd=Math.random, i=0, c;

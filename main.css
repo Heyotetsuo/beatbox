@@ -18,8 +18,15 @@ canvas {
 #shadow {
 	display: none;
 }
-button{
+.button{
+	border-radius: 1em;
 	margin: 1em;
 	font-size: 2em;
 	padding: 2em;
+	display: inline-block;
+	background-color: lightgray;
+	user-select: none;
+}
+.button:active{
+	background-color: gray;
 }
