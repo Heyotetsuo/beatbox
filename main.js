@@ -7,24 +7,22 @@ function urandint(max){
 function init(){
 	var a=[], synth, i, j;
 	var variance, freq;
-	reverb = new p5.Reverb();
 	for(i=0;i<3;i++){
 		a = [];
 		variance = rnd()*1000;
 		freq = rnd()*1000;
-		for(j=0;j<10;j++){
+		for(j=0;j<30;j++){
 			synth = new p5.Oscillator();
-			synth.setType( urandint(4) );
+			synth.setType( "sawtooth" );
 			synth.amp(0.1);
-			synth.freq( rnd()*variance+freq );
-			reverb.process( synth, 1 );
+			synth.freq( rnd()*50+50 );
 			a.push( synth );
 		}
 		sounds.push(a);
 	}
 }
 function playOne( sfx, dur ){
-	sfx.start();
+	sfx.start(0);
 	setTimeout( ()=>{
 		sfx.stop();
 	}, dur );
@@ -35,7 +33,7 @@ function playMulti( list, dur ){
 	}
 }
 function play( i ){
-	playMulti( sounds[i], 300 );
+	playMulti( sounds[i], 70 );
 }
 function main(){
 	init();
