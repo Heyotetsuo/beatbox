@@ -1,20 +1,26 @@
-var rnd=Math.random;
-var beep, boop, multi=[];
+var rnd=Math.random,round=Math.round,floor=Math.floor;
+var sounds = [], reverb;
+var osctypes = ["sine","triangle","square","sawtooth"];
+function urandint(max){
+	return floor( rnd()*max );
+}
 function init(){
-	var synth, i;
-	beep = new p5.Oscillator();
-	beep.setType("sine");
-	beep.amp(1);
-	beep.freq(600);
-	boop = new p5.Oscillator();
-	boop.setType("sine"); boop.amp(1);
-	boop.freq(300);
-	for(i=0;i<10;i++){
-		synth = new p5.Oscillator();
-		synth.setType("sine");
-		synth.amp(0.1);
-		synth.freq( rnd()*300+300 );
-		multi.push( synth );
+	var a=[], synth, i, j;
+	var variance, freq;
+	reverb = new p5.Reverb();
+	for(i=0;i<3;i++){
+		a = [];
+		variance = rnd()*1000;
+		freq = rnd()*1000;
+		for(j=0;j<10;j++){
+			synth = new p5.Oscillator();
+			synth.setType( urandint(4) );
+			synth.amp(0.1);
+			synth.freq( rnd()*variance+freq );
+			reverb.process( synth, 1 );
+			a.push( synth );
+		}
+		sounds.push(a);
 	}
 }
 function playOne( sfx, dur ){
@@ -28,20 +34,8 @@ function playMulti( list, dur ){
 		playOne( list[i], dur );
 	}
 }
-function play( sound ){
-	switch( sound ){
-	case "beep":
-		playOne( beep, 300 );
-		break;
-	case "boop":
-		playOne( boop, 300 );
-		break;
-	case "multi":
-		playMulti( multi, 1000 );
-		break;
-	default:
-		break;
-	}
+function play( i ){
+	playMulti( sounds[i], 300 );
 }
 function main(){
 	init();
