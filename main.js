@@ -1,12 +1,26 @@
-function init(){}
-function main(){
-	var wave = new p5.Oscillator();
-	wave.setType( "sine" );
-	wave.amp(1);
-	wave.freq(300);
-	wave.start();
+var beep, boop;
+function init(){
+	beep = new p5.Oscillator();
+	beep.setType("sine");
+	beep.amp(1);
+	beep.freq(600);
+	boop = new p5.Oscillator();
+	boop.setType("sine");
+	boop.amp(1);
+	boop.freq(300);
+}
+function play( sound ){
+	if ( sound === "beep" ){
+		sfx = beep;
+	} else {
+		sfx = boop;
+	}
+	sfx.start();
 	setTimeout( ()=>{
-		wave.stop();
-	}, 1000 );
+		sfx.stop();
+	}, 300 );
+}
+function main(){
+	init();
 }
 main();

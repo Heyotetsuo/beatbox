@@ -18,3 +18,8 @@ canvas {
 #shadow {
 	display: none;
 }
+button{
+	margin: 1em;
+	font-size: 2em;
+	padding: 2em;
+}
